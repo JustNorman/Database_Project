@@ -113,17 +113,18 @@ CREATE TABLE [MEMBERSHIP] (
 
 -- --William can you finish replacing the placeholders <type> with actual data types like I've done above please. I'll provide some notes of what certain data types means. Once you're done you cane delete the notes I've provide so it'll look less messy
 -- --BRIDGE TABLE
--- CREATE TABLE [INVENTORY] (
---   [INV_ID] <type>,
---   [PROD_ID] <type>,
---   [INV_QUANTITY] <type>,
---   [INV_SUBCAT_ID] <type>,
---   [VEND_ID] <type>,
---   PRIMARY KEY ([INV_ID]),
---   CONSTRAINT [FK_INVENTORY.INV_QUANTITY]
---     FOREIGN KEY ([INV_QUANTITY])
---       REFERENCES [VENDOR]([VEND_NAME])
--- );
+
+CREATE TABLE [INVENTORY] (
+  [INV_ID] INT,
+  [PROD_ID] INT,
+  [INV_QUANTITY] INT,
+  [INV_SUBCAT_ID] INT,
+  [VEND_ID] INT,
+  PRIMARY KEY ([INV_ID]),
+  CONSTRAINT [FK_INVENTORY.INV_QUANTITY]
+    FOREIGN KEY ([INV_QUANTITY])
+      REFERENCES [VENDOR]([VEND_NAME])
+);
 
 -- --BRIDGE TABLE
 -- CREATE TABLE [ORDER] (
