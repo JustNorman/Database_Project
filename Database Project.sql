@@ -37,6 +37,7 @@ CREATE TABLE [MANAGER] (
   PRIMARY KEY ([EMP_ID])
 );
 
+--Bridge Table
 CREATE TABLE [MAN_CRED] (
   [EMP_ID] INT,
   [CERT_ID] INT,
