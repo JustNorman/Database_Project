@@ -168,7 +168,6 @@ CREATE TABLE [MEMBERSHIP] (
   PRIMARY KEY ([MEMB_ID])
 );
 
--- --William can you finish replacing the placeholders <type> with actual data types like I've done above please. I'll provide some notes of what certain data types means. Once you're done you cane delete the notes I've provide so it'll look less messy
 -- --BRIDGE TABLE
 CREATE TABLE [INVENTORY] (
   [INV_ID] INT,
