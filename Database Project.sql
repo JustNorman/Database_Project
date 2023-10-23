@@ -1,7 +1,7 @@
 CREATE TABLE [CHEF_CERT] (
   [CERT_ID] INT,
-  [CERT_FEE] DECIMAL(10, 2), --DECIMAL(10,2) means you can have a decimal number with a maximal total precision of 10 digits. Two (2) of them after the decimal point and eight (8) before.
-  [CERT_DATE_OFFER] DATE, --In SQL, datetime date data type is used for values that contain both date and time. Microsoft defines it as a date combined with a time of day with fractional seconds that is based on a 24-hour clock.
+  [CERT_FEE] DECIMAL(10, 2), 
+  [CERT_DATE_OFFER] DATE,
   PRIMARY KEY ([CERT_ID])
 );
 
@@ -20,9 +20,6 @@ CREATE TABLE [CHEF_CRED] (
   CONSTRAINT [FK_CHEF_CRED.CERT_ID]
     FOREIGN KEY ([CERT_ID])
       REFERENCES [CHEF_CERT]([CERT_FEE]),
-  CONSTRAINT [FK_CHEF_CRED.CERT_ID]
-    FOREIGN KEY ([CERT_ID])
-      REFERENCES [CHEF]([SOUS_CHEF])
 );
 
 CREATE TABLE [MAN_CERT] (
@@ -47,9 +44,6 @@ CREATE TABLE [MAN_CRED] (
   CONSTRAINT [FK_MAN_CRED.EXAM_DATE]
     FOREIGN KEY ([EXAM_DATE])
       REFERENCES [MAN_CERT]([CERT_FEE]),
-  CONSTRAINT [FK_MAN_CRED.EXAM_DATE]
-    FOREIGN KEY ([EXAM_DATE])
-      REFERENCES [MANAGER]([GEN_MAN])
 );
 
 CREATE TABLE [SALRY] (
@@ -119,7 +113,7 @@ CREATE TABLE [JOB_TITLE] (
 
 CREATE TABLE [VENDOR] (
   [VEND_ID] INT,
-  [VEND_NAME] VARCHAR(255), --Varchar means character data that is varying. Also known as Variable Character, it is an indeterminate length string data type. It can hold numbers, letters and special characters
+  [VEND_NAME] VARCHAR(255),
   [VEND_ADDRESS] VARCHAR(255),
   [VEND_PHONE] VARCHAR(0),
   PRIMARY KEY ([VEND_ID])
@@ -129,7 +123,6 @@ CREATE TABLE [PRODUCT] (
   [PROD_ID] INT,
   [PROD_NAME] VARCHAR(255),
   [PROD_PRICE] DECIMAL(10, 2),
-  [HIST_PRICE] DECIMAL(10, 2),
   [SERV_SIZE] VARCHAR(20),
   [PROD_SUBCAT_ID] INT,
   PRIMARY KEY ([PROD_ID])
