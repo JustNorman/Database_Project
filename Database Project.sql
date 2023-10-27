@@ -1,7 +1,7 @@
 CREATE TABLE [CHEF_CERT] (
   [CERT_ID] INT,
-  [CERT_FEE] DECIMAL(10, 2), 
-  [CERT_DATE_OFFER] DATE,
+  [CERT_FEE] DECIMAL(10, 2), --means you can have a decimal number with a maximal total precision of 10 digits. Two (2) of them after the decimal point and eight (8) before
+  [CERT_DATE_OFFER] DATE, --a date combined with a time of day with fractional seconds that is based on a 24-hour clock
   PRIMARY KEY ([CERT_ID])
 );
 
@@ -79,10 +79,10 @@ CREATE TABLE [SHIFT] (
 CREATE TABLE [EMPLOYEE] (
   [EMP_ID] INT,
   [SUP_ID] INT,
-  [EMP_FNAME] VARCHAR(255),
+  [EMP_FNAME] VARCHAR(255), --stores 255 characters
   [EMP_LNAME] VARCHAR(255),
   [EMP_ADDRESS] VARCHAR(255),
-  [EMP_PHONE] VARCHAR(20),
+  [EMP_PHONE] VARCHAR(20), --stores 20 characters
   [EMP_DOB] DATE,
   [EMP_TITLE] VARCHAR(255),
   [TYPE] VARCHAR(20),
@@ -115,7 +115,7 @@ CREATE TABLE [VENDOR] (
   [VEND_ID] INT,
   [VEND_NAME] VARCHAR(255),
   [VEND_ADDRESS] VARCHAR(255),
-  [VEND_PHONE] VARCHAR(0),
+  [VEND_PHONE] VARCHAR(0), --VARCHAR(0) columns can contain 2 values: an empty string or NULL
   PRIMARY KEY ([VEND_ID])
 );
 
@@ -157,7 +157,7 @@ CREATE TABLE [PROD_SUBCATEGORY] (
 
 CREATE TABLE [PAYMENT] (
   [PYMT_ID] INT,
-  [PYMT_METHOD] VARCHAR(50),
+  [PYMT_METHOD] VARCHAR(50), --store 50 characters
   PRIMARY KEY ([PYMT_ID])
 );
 
