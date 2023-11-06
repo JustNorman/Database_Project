@@ -100,21 +100,39 @@ CREATE TABLE [SHIFT] (
 );
 
 
+--Keeping this old version of the table just in case
+-- CREATE TABLE [EMPLOYEE] (
+--   [EMP_ID] INT,
+--   [SUP_ID] INT,
+--   [EMP_FNAME] VARCHAR(255), --stores 255 characters
+--   [EMP_LNAME] VARCHAR(255),
+--   [EMP_ADDRESS] VARCHAR(255),
+--   [EMP_PHONE] VARCHAR(20), --stores 20 characters
+--   [EMP_DOB] DATE,
+--   [EMP_TITLE] VARCHAR(255),
+--   [TYPE] VARCHAR(20),
+--   PRIMARY KEY ([EMP_ID]),
+--   CONSTRAINT [FK_EMPLOYEE.EMP_ID]
+--     FOREIGN KEY ([EMP_ID])
+--       REFERENCES [EMPLOYEE]([EMP_LNAME])
+-- );
+--Updeted version of EMPLOYEE table
 CREATE TABLE [EMPLOYEE] (
   [EMP_ID] INT,
-  [SUP_ID] INT,
-  [EMP_FNAME] VARCHAR(255), --stores 255 characters
+  [MANAGER_ID] INT, -- New column for manager-employee relationship
+  [EMP_FNAME] VARCHAR(255),
   [EMP_LNAME] VARCHAR(255),
   [EMP_ADDRESS] VARCHAR(255),
-  [EMP_PHONE] VARCHAR(20), --stores 20 characters
+  [EMP_PHONE] VARCHAR(20),
   [EMP_DOB] DATE,
   [EMP_TITLE] VARCHAR(255),
   [TYPE] VARCHAR(20),
   PRIMARY KEY ([EMP_ID]),
-  CONSTRAINT [FK_EMPLOYEE.EMP_ID]
-    FOREIGN KEY ([EMP_ID])
-      REFERENCES [EMPLOYEE]([EMP_LNAME])
+  CONSTRAINT [FK_EMPLOYEE.MANAGER]
+    FOREIGN KEY ([MANAGER_ID])
+    REFERENCES [EMPLOYEE]([EMP_ID])
 );
+
 
 --BRIDGE TABLE
 CREATE TABLE [EMPLYMENT_HISTORY] (
