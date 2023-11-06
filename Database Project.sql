@@ -56,25 +56,49 @@ CREATE TABLE [WAGE] (
   PRIMARY KEY ([EMP_ID])
 );
 
---BRIDGE TABLE
+--Keeping this old version of the table just in case
+-- --BRIDGE TABLE
+-- CREATE TABLE [CLOCK_IN] (
+--   [SHIFT_ID] INT,
+--   [EMP_NUM] INT,
+--   [START_TIME] TIME,
+--   [END_TIME] TIME,
+--   PRIMARY KEY ([SHIFT_ID], [EMP_NUM])
+-- );
+--Updeted version of CLOCK_IN table
 CREATE TABLE [CLOCK_IN] (
+  [CLOCK_IN_ID] INT,
   [SHIFT_ID] INT,
   [EMP_NUM] INT,
   [START_TIME] TIME,
   [END_TIME] TIME,
-  PRIMARY KEY ([SHIFT_ID], [EMP_NUM])
+  PRIMARY KEY ([CLOCK_IN_ID]),
+  CONSTRAINT [FK_CLOCK_IN.SHIFT]
+    FOREIGN KEY ([SHIFT_ID])
+      REFERENCES [SHIFT]([SHIFT_ID])
 );
 
+
+--Keeping this old version of the table just in case
+-- CREATE TABLE [SHIFT] (
+--   [SHIFT_ID] INT,
+--   [SHIFT_START] TIME,
+--   [SHIFT_END] TIME,
+--   [BREAK] INT,
+--   PRIMARY KEY ([SHIFT_ID]),
+--   CONSTRAINT [FK_SHIFT.SHIFT_START]
+--     FOREIGN KEY ([SHIFT_START])
+--       REFERENCES [CLOCK_IN]([EMP_NUM])
+-- );
+--Updeted version of SHIFT table
 CREATE TABLE [SHIFT] (
   [SHIFT_ID] INT,
   [SHIFT_START] TIME,
   [SHIFT_END] TIME,
   [BREAK] INT,
-  PRIMARY KEY ([SHIFT_ID]),
-  CONSTRAINT [FK_SHIFT.SHIFT_START]
-    FOREIGN KEY ([SHIFT_START])
-      REFERENCES [CLOCK_IN]([EMP_NUM])
+  PRIMARY KEY ([SHIFT_ID])
 );
+
 
 CREATE TABLE [EMPLOYEE] (
   [EMP_ID] INT,
