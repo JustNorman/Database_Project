@@ -158,7 +158,7 @@ CREATE TABLE [VENDOR] (
   [VEND_ID] INT,
   [VEND_NAME] VARCHAR(255),
   [VEND_ADDRESS] VARCHAR(255),
-  [VEND_PHONE] VARCHAR(0), --VARCHAR(0) columns can contain 2 values: an empty string or NULL
+  [VEND_PHONE] VARCHAR(255), 
   PRIMARY KEY ([VEND_ID])
 );
 
@@ -171,6 +171,18 @@ CREATE TABLE [PRODUCT] (
   PRIMARY KEY ([PROD_ID])
 );
 
+-- Keeping this old version of the table just in case
+-- CREATE TABLE [PRICE_HISTORY] (
+--   [PROD_ID] INT,
+--   [START_DATE] DATE,
+--   [END_DATE] DATE,
+--   [PRICE] DECIMAL(10, 2),
+--   PRIMARY KEY ([PROD_ID]),
+--   CONSTRAINT [FK_PRICE_HISTORY.PROD_ID]
+--     FOREIGN KEY ([PROD_ID])
+--       REFERENCES [PRODUCT]([PROD_PRICE])
+-- );
+-- Updated version of PRICE_HISTORY table
 CREATE TABLE [PRICE_HISTORY] (
   [PROD_ID] INT,
   [START_DATE] DATE,
@@ -179,8 +191,9 @@ CREATE TABLE [PRICE_HISTORY] (
   PRIMARY KEY ([PROD_ID]),
   CONSTRAINT [FK_PRICE_HISTORY.PROD_ID]
     FOREIGN KEY ([PROD_ID])
-      REFERENCES [PRODUCT]([PROD_PRICE])
+      REFERENCES [PRODUCT]([PROD_ID]) -- Reference the primary key of PRODUCT
 );
+
 
 CREATE TABLE [CUSTOMER] (
   [CUST_ID] INT,
@@ -211,18 +224,32 @@ CREATE TABLE [MEMBERSHIP] (
   PRIMARY KEY ([MEMB_ID])
 );
 
--- --BRIDGE TABLE
+-- Keeping this old version of the table just in case
+ --BRIDGE TABLE
+-- CREATE TABLE [INVENTORY] (
+--   [INV_ID] INT,
+--   [PROD_ID] INT,
+--   [INV_QUANTITY] INT,
+--   [INV_SUBCAT_ID] INT,
+--   [VEND_ID] INT,
+--   PRIMARY KEY ([INV_ID]),
+--   CONSTRAINT [FK_INVENTORY.INV_QUANTITY]
+--     FOREIGN KEY ([INV_QUANTITY])
+--       REFERENCES [VENDOR]([VEND_NAME])
+-- );
+-- Updated version of INVENTORY table
 CREATE TABLE [INVENTORY] (
   [INV_ID] INT,
   [PROD_ID] INT,
   [INV_QUANTITY] INT,
   [INV_SUBCAT_ID] INT,
-  [VEND_ID] INT,
+  [VEND_ID] INT, -- Reference the appropriate column in VENDOR
   PRIMARY KEY ([INV_ID]),
-  CONSTRAINT [FK_INVENTORY.INV_QUANTITY]
-    FOREIGN KEY ([INV_QUANTITY])
-      REFERENCES [VENDOR]([VEND_NAME])
+  CONSTRAINT [FK_INVENTORY.VEND_ID] -- Updated constraint name
+    FOREIGN KEY ([VEND_ID])
+      REFERENCES [VENDOR]([VEND_ID]) -- Reference the primary key of VENDOR
 );
+
 
 --BRIDGE TABLE
 CREATE TABLE [ORDER] (
